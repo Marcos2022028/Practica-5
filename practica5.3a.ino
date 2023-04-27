@@ -1,12 +1,12 @@
-#include <Adafruit_NeoPixel.h>
-#include <Keypad.h>
-#include <Servo.h>
-#define tiempo() delay(1500)
-#define FILAS 4
-#define COLUMNAS 4
-
+#include <Adafruit_NeoPixel.h>//Libreria de NeoPixel
+#include <Keypad.h>//Libreria del Keypad
+#include <Servo.h>//Lebria del Servo motor
+#define tiempo() delay(1500)//Se define tiempo
+#define FILAS 4//Defines filas
+#define COLUMNAS 4//Defines columnas
+//Define el numero de pin y cuantas leds son
 Adafruit_NeoPixel tira = Adafruit_NeoPixel(12,13);
-
+//Especifica como esta el teclado
 char keys[FILAS][COLUMNAS] = {
   {'1','2','3','A'},
   {'4','5','6','B'},
@@ -15,24 +15,24 @@ char keys[FILAS][COLUMNAS] = {
 };
 
 char key;
-byte Filas[FILAS]={9,8,7,6};
-byte Columnas[COLUMNAS] = {5,4,3,2};
+byte Filas[FILAS]={9,8,7,6};//Pines donde estan las filas
+byte Columnas[COLUMNAS] = {5,4,3,2};//Pines donde estan las columnas
 
 Keypad teclado = Keypad(makeKeymap(keys),Filas, Columnas,FILAS,COLUMNAS);
 
-Servo servo;
+Servo servo;//Se le da nombre al Servo
 
 void setup() {
-  // put your setup code here, to run once:
+// Se definen las variables
   Serial.begin(9600);
   tira.begin();
   tira.show();
-  servo.attach(10);
+  servo.attach(10);//Se le da el numero del pin
 
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  //Se crea la funcion de las teclas azules
   key = teclado.getKey();
 
   if(key){
@@ -90,7 +90,7 @@ void loop() {
       servo.write(180);
       tiempo();
     break;
-
+//Se crea la funcion de las teclas rojas
     case 'A':
       for(int i = 0; i<12; i = i+2 ){
         tira.setBrightness(100);
