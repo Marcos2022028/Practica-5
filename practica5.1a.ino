@@ -1,6 +1,7 @@
-#include <Keypad.h>
-#define FILAS 4
-#define COLUMNAS 4
+#include <Keypad.h>//Libreria del Keypad
+#define FILAS 4//Defines filas
+#define COLUMNAS 4//Define Columnas
+//Se define cada pin del display
 const int  g = A5;
 const int  f = A4;
 const int  e = A3;
@@ -8,10 +9,10 @@ const int  d = A2;
 const int  c = A1;
 const int  b = A0;
 const int  a = 10;
-#define out(pin) pinMode(pin, OUTPUT)
-#define encen(pin) digitalWrite(pin, HIGH)
-#define apag(pin) digitalWrite(pin, LOW)
-
+#define out(pin) pinMode(pin, OUTPUT)//Define las salidas
+#define encen(pin) digitalWrite(pin, HIGH)//Define estado encendido
+#define apag(pin) digitalWrite(pin, LOW)//Define estado apagado
+//Configuracion
 char keys[FILAS][COLUMNAS] = {
   {'1','2','3','A'},
   {'4','5','6','B'},
@@ -20,13 +21,14 @@ char keys[FILAS][COLUMNAS] = {
 };
 
 char key;
-byte Filas[FILAS]={9,8,7,6};
-byte Columnas[COLUMNAS] = {5,4,3,2};
+byte Filas[FILAS]={9,8,7,6};//Se muestra como estan los pines de las filas
+byte Columnas[COLUMNAS] = {5,4,3,2};//Se muestra como estan los pines de las columnas
 
 Keypad teclado = Keypad(makeKeymap(keys),Filas, Columnas,FILAS,COLUMNAS);
 
 void setup()
 {
+  //Se colocan las salidas
 out(g);
 out(f);
 out(e);
@@ -42,7 +44,7 @@ void loop(){
   if(key){
   Serial.println(key);
   }
-
+//Se realizan las funciones de cada botón 
   switch(key){
   case '1':
 apag(g);
